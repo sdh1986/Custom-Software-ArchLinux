@@ -248,6 +248,20 @@ else
     echo -e "${YELLOW}Bitwarden already installed. Skipping.${NC}"
 fi
 
+# --- Install Clash Verge Rev ---
+echo -e "${BLUE}Checking Clash Verge Rev installation...${NC}"
+if ! is_package_installed "clash-verge-rev-bin"; then
+    echo -e "${YELLOW}Clash Verge Rev not found. Installing...${NC}"
+    paru -S clash-verge-rev-bin
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Clash Verge Rev installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install Clash Verge Rev. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}Clash Verge Rev already installed. Skipping.${NC}"
+fi
+
 echo "---"
 echo -e "${GREEN}Script execution complete.${NC}"
 echo -e "${YELLOW}Remember to log out and log back in for group changes and environment variables to take full effect.${NC}"
