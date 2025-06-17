@@ -175,8 +175,6 @@ else
     echo -e "${YELLOW}${CURRENT_USER} is already in kvm group. Skipping.${NC}"
 fi
 
-echo "---"
-
 # --- Modify qemu.conf ---
 echo -e "${BLUE}Checking qemu.conf configuration...${NC}"
 QEMU_CONF="/etc/libvirt/qemu.conf"
@@ -195,6 +193,8 @@ else
         echo -e "${RED}Failed to modify user setting.${NC}"
     fi
 fi
+
+echo "---"
 
 # Check group setting
 if grep -qE '^group = "wheel"$' "$QEMU_CONF"; then
@@ -248,22 +248,6 @@ else
     echo -e "${YELLOW}Bitwarden already installed. Skipping.${NC}"
 fi
 
-<<<<<<< HEAD
-# --- Install Clash Verge Rev ---
-echo -e "${BLUE}Checking Clash Verge Rev installation...${NC}"
-if ! is_package_installed "clash-verge-rev-bin"; then
-    echo -e "${YELLOW}Clash Verge Rev not found. Installing...${NC}"
-    paru -S clash-verge-rev-bin
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}Clash Verge Rev installed successfully.${NC}"
-    else
-        echo -e "${RED}Failed to install Clash Verge Rev. Please check for errors.${NC}"
-    fi
-else
-    echo -e "${YELLOW}Clash Verge Rev already installed. Skipping.${NC}"
-fi
-
-=======
 # --- Install Brave ---
 echo -e "${BLUE}Checking Brave installation...${NC}"
 if ! is_package_installed "brave"; then
@@ -322,7 +306,6 @@ else
 fi
 Clash
 
->>>>>>> 1c98573a20fd3b91ff02f7e5edde040e700667c0
 echo "---"
 echo -e "${GREEN}Script execution complete.${NC}"
 echo -e "${YELLOW}Remember to log out and log back in for group changes and environment variables to take full effect.${NC}"
