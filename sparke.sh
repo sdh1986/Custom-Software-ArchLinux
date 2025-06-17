@@ -250,7 +250,7 @@ fi
 
 # --- Install Clash Verge Rev ---
 echo -e "${BLUE}Checking Clash Verge Rev installation...${NC}"
-if ! is_package_installed "clash verge rev"; then
+if ! is_package_installed "clash-verge-rev-bin"; then
     echo -e "${YELLOW}Clash Verge Rev not found. Installing...${NC}"
     paru -S --noconfirm clash-verge-rev-bin
     if [ $? -eq 0 ]; then
