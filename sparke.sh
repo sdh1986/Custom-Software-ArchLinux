@@ -248,18 +248,18 @@ else
     echo -e "${YELLOW}Bitwarden already installed. Skipping.${NC}"
 fi
 
-# --- Install Clash Verge Rev ---
-echo -e "${BLUE}Checking Clash Verge Rev installation...${NC}"
+# --- Install ClashVergeRev ---
+echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
 if ! is_package_installed "clash-verge-rev-bin"; then
-    echo -e "${YELLOW}Clash Verge Rev not found. Installing...${NC}"
+    echo -e "${YELLOW}ClashVergeRev not found. Installing...${NC}"
     paru -S --noconfirm clash-verge-rev-bin
     if [ $? -eq 0 ]; then
-        echo -e "${GREEN}Clash Verge Rev installed successfully.${NC}"
+        echo -e "${GREEN}ClashVergeRev installed successfully.${NC}"
     else
-        echo -e "${RED}Failed to install Clash Verge Rev. Please check for errors.${NC}"
+        echo -e "${RED}Failed to install ClashVergeRev. Please check for errors.${NC}"
     fi
 else
-    echo -e "${YELLOW}Clash Verge Rev already installed. Skipping.${NC}"
+    echo -e "${YELLOW}ClashVergeRev already installed. Skipping.${NC}"
 fi
 
 echo "---"
