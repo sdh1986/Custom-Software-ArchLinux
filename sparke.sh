@@ -262,6 +262,20 @@ else
     echo -e "${YELLOW}Brave already installed. Skipping.${NC}"
 fi
 
+# --- Install OBS ---
+echo -e "${BLUE}Checking OBS installation...${NC}"
+if ! is_package_installed "obs-studio"; then
+    echo -e "${YELLOW}OBS not found. Installing...${NC}"
+    sudo pacman -S --noconfirm obs-studio
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}OBS installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install OBS. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}OBS already installed. Skipping.${NC}"
+fi
+
 # --- Install ClashVergeRev ---
 :<<'Clash'
 echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
