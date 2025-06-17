@@ -263,7 +263,7 @@ else
 fi
 
 # --- Install ClashVergeRev ---
-: <<'COMMENT'echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
+:<<'Clash'echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
 if ! is_package_installed "clash-verge-rev-bin"; then
     echo -e "${YELLOW}ClashVergeRev not found. Installing...${NC}"
     paru -S --noconfirm clash-verge-rev-bin
@@ -275,7 +275,7 @@ if ! is_package_installed "clash-verge-rev-bin"; then
 else
     echo -e "${YELLOW}ClashVergeRev already installed. Skipping.${NC}"
 fi
-COMMENT
+Clash
 
 echo "---"
 echo -e "${GREEN}Script execution complete.${NC}"
