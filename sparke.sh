@@ -248,6 +248,7 @@ else
     echo -e "${YELLOW}Bitwarden already installed. Skipping.${NC}"
 fi
 
+<<<<<<< HEAD
 # --- Install Clash Verge Rev ---
 echo -e "${BLUE}Checking Clash Verge Rev installation...${NC}"
 if ! is_package_installed "clash-verge-rev-bin"; then
@@ -262,6 +263,66 @@ else
     echo -e "${YELLOW}Clash Verge Rev already installed. Skipping.${NC}"
 fi
 
+=======
+# --- Install Brave ---
+echo -e "${BLUE}Checking Brave installation...${NC}"
+if ! is_package_installed "brave"; then
+    echo -e "${YELLOW}Brave not found. Installing...${NC}"
+    sudo pacman -S --noconfirm brave
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Brave installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install Brave. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}Brave already installed. Skipping.${NC}"
+fi
+
+# --- Install OBS ---
+echo -e "${BLUE}Checking OBS installation...${NC}"
+if ! is_package_installed "obs-studio"; then
+    echo -e "${YELLOW}OBS not found. Installing...${NC}"
+    sudo pacman -S --noconfirm obs-studio
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}OBS installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install OBS. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}OBS already installed. Skipping.${NC}"
+fi
+
+# --- Install BTOP ---
+echo -e "${BLUE}Checking BTOP installation...${NC}"
+if ! is_package_installed "btop"; then
+    echo -e "${YELLOW}BTOP not found. Installing...${NC}"
+    sudo pacman -S --noconfirm btop
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}BTOP installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install BTOP. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}BTOP already installed. Skipping.${NC}"
+fi
+
+# --- Install ClashVergeRev ---
+:<<'Clash'
+echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
+if ! is_package_installed "clash-verge-rev-bin"; then
+    echo -e "${YELLOW}ClashVergeRev not found. Installing...${NC}"
+    paru -S --noconfirm clash-verge-rev-bin
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}ClashVergeRev installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install ClashVergeRev. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}ClashVergeRev already installed. Skipping.${NC}"
+fi
+Clash
+
+>>>>>>> 1c98573a20fd3b91ff02f7e5edde040e700667c0
 echo "---"
 echo -e "${GREEN}Script execution complete.${NC}"
 echo -e "${YELLOW}Remember to log out and log back in for group changes and environment variables to take full effect.${NC}"
