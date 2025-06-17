@@ -264,7 +264,7 @@ fi
 
 # --- Install ClashVergeRev ---
 :<<'Clash'
-    echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
+echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
 if ! is_package_installed "clash-verge-rev-bin"; then
     echo -e "${YELLOW}ClashVergeRev not found. Installing...${NC}"
     paru -S --noconfirm clash-verge-rev-bin
