@@ -248,8 +248,22 @@ else
     echo -e "${YELLOW}Bitwarden already installed. Skipping.${NC}"
 fi
 
+# --- Install Brave ---
+echo -e "${BLUE}Checking Brave installation...${NC}"
+if ! is_package_installed "brave"; then
+    echo -e "${YELLOW}Brave not found. Installing...${NC}"
+    sudo pacman -S --noconfirm brave
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Brave installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install Brave. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}Brave already installed. Skipping.${NC}"
+fi
+
 # --- Install ClashVergeRev ---
-echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
+: <<'COMMENT'echo -e "${BLUE}Checking ClashVergeRev installation...${NC}"
 if ! is_package_installed "clash-verge-rev-bin"; then
     echo -e "${YELLOW}ClashVergeRev not found. Installing...${NC}"
     paru -S --noconfirm clash-verge-rev-bin
@@ -261,6 +275,7 @@ if ! is_package_installed "clash-verge-rev-bin"; then
 else
     echo -e "${YELLOW}ClashVergeRev already installed. Skipping.${NC}"
 fi
+COMMENT
 
 echo "---"
 echo -e "${GREEN}Script execution complete.${NC}"
