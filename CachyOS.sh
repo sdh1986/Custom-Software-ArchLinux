@@ -290,21 +290,21 @@ else
     echo -e "${YELLOW}BTOP already installed. Skipping.${NC}"
 fi
 
-# --- Install xxx ---
-:<<'xxx'
-echo -e "${BLUE}Checking BTOP installation...${NC}"
+# --- Install Backintime ---
+:<<'backintime'
+echo -e "${BLUE}Checking Backintime installation...${NC}"
 if ! is_package_installed "btop"; then
-    echo -e "${YELLOW}BTOP not found. Installing...${NC}"
+    echo -e "${YELLOW}Backintime not found. Installing...${NC}"
     sudo pacman -S --noconfirm btop
     if [ $? -eq 0 ]; then
-        echo -e "${GREEN}BTOP installed successfully.${NC}"
+        echo -e "${GREEN}Backintime installed successfully.${NC}"
     else
-        echo -e "${RED}Failed to install BTOP. Please check for errors.${NC}"
+        echo -e "${RED}Failed to install Backintime. Please check for errors.${NC}"
     fi
 else
-    echo -e "${YELLOW}BTOP already installed. Skipping.${NC}"
+    echo -e "${YELLOW}Backintime already installed. Skipping.${NC}"
 fi
-xxx
+backintime
 
 # --- Install ClashVergeRev ---
 :<<'Clash'
