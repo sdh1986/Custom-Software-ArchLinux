@@ -40,8 +40,6 @@ else
     echo -e "${YELLOW}Fcitx5 packages already installed. Skipping.${NC}"
 fi
 
-echo "---"
-
 # --- Configure Fcitx5 environment variables in /etc/environment ---
 echo -e "${BLUE}Checking Fcitx5 environment variables in /etc/environment...${NC}"
 ENVIRONMENT_FILE="/etc/environment"
