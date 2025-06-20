@@ -38,7 +38,7 @@ if ! is_package_installed "fcitx5-gtk"; then
     fi
 else
     echo -e "${YELLOW}Fcitx5 packages already installed. Skipping.${NC}"
-fi
+
 
 # --- Configure Fcitx5 environment variables in /etc/environment ---
 echo -e "${BLUE}Checking Fcitx5 environment variables in /etc/environment...${NC}"
@@ -68,7 +68,7 @@ else
     fi
 fi
 
-echo "---"
+
 
 # --- Install Virt-manager and QEMU packages ---
 echo -e "${BLUE}Checking Virt-manager and QEMU package installation...${NC}"
@@ -84,7 +84,7 @@ else
     echo -e "${YELLOW}Virt-manager and related packages already installed. Skipping.${NC}"
 fi
 
-echo "---"
+
 
 # --- Enable and start libvirtd.service ---
 echo -e "${BLUE}Checking libvirtd service status...${NC}"
@@ -100,7 +100,7 @@ else
     echo -e "${YELLOW}libvirtd.service is already enabled and active. Skipping.${NC}"
 fi
 
-echo "---"
+
 
 # --- Modify libvirtd.conf ---
 echo -e "${BLUE}Checking libvirtd.conf configuration...${NC}"
@@ -141,7 +141,7 @@ else
     echo -e "${GREEN}libvirtd.conf changes applied.${NC}"
 fi
 
-echo "---"
+
 
 # --- Add current user to libvirt and kvm groups ---
 CURRENT_USER=$(whoami)
@@ -192,7 +192,7 @@ else
     fi
 fi
 
-echo "---"
+
 
 # Check group setting
 if grep -qE '^group = "wheel"$' "$QEMU_CONF"; then
@@ -326,8 +326,10 @@ if ! is_package_installed "clash-verge-rev-bin"; then
 else
     echo -e "${YELLOW}ClashVergeRev already installed. Skipping.${NC}"
 fi
-Clash
+
 
 echo "---"
+Clash
+
 echo -e "${GREEN}Script execution complete.${NC}"
 echo -e "${YELLOW}Remember to log out and log back in for group changes and environment variables to take full effect.${NC}"
