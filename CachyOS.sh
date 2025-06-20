@@ -26,31 +26,45 @@ is_user_in_group() {
     return $?
 }
 
+# --- Update Pacman mirrorlist ---
+echo -e "${BLUE}Updating Pacman mirrorlist and synchronizing databases...${NC}"
+sudo pacman -Syyu --noconfirm
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Pacman mirrorlist updated and databases synchronized successfully.${NC}"
+else
+    echo -e "${RED}Failed to update Pacman mirrorlist or synchronize databases. Please check your internet connection and pacman configuration.${NC}"
+    exit 1
+fi
+
+echo "---"
+
 # --- Install Fcitx5 packages ---
 echo -e "${BLUE}Checking Fcitx5 package installation...${NC}"
-if ! is_package_installed "fcitx5-gtk"; then
+if ! is_package_installed "fcitx5-im"; then
     echo -e "${YELLOW}Fcitx5 packages not found. Installing...${NC}"
-    sudo pacman -S --noconfirm fcitx5-gtk fcitx5-configtool fcitx5-chinese-addons
+    sudo pacman -S --noconfirm fcitx5-im fcitx5-chinese-addons
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Fcitx5 packages installed successfully.${NC}"
     else
-        echo -e "${RED}Failed to install Fcitx5 packages. Please check for errors.${NC}"
+        echo -e "${RED}Failed to install Fcitx5 packages. Please check for errors or try updating your mirrorlist again.${NC}"
     fi
 else
     echo -e "${YELLOW}Fcitx5 packages already installed. Skipping.${NC}"
+fi
 
+echo "---"
 
 # --- Configure Fcitx5 environment variables in /etc/environment ---
 echo -e "${BLUE}Checking Fcitx5 environment variables in /etc/environment...${NC}"
 ENVIRONMENT_FILE="/etc/environment"
-FCITX_VARS="
+FCITX_VARS='
 # Fcitx5
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 SDL_IM_MODULE=fcitx
 GLFW_IM_MODULE=ibus
-"
+'
 
 if grep -q "GTK_IM_MODULE=fcitx" "$ENVIRONMENT_FILE" && \
    grep -q "QT_IM_MODULE=fcitx" "$ENVIRONMENT_FILE" && \
@@ -68,7 +82,24 @@ else
     fi
 fi
 
+echo "---"
 
+# --- Install Virt-manager and QEMU packages ---
+echo -e "${BLUE}Checking Virt-manager and QEMU package installation...${NC}"
+if ! is_package_installed "virt-manager"; then
+    echo -e "${YELLOW}Virt-manager not found. Installing virtualization packages...${NC}"
+    sudo pacman -Syu --needed --noconfirm virt-manager qemu-full libvirt edk2-ovmf dnsmasq vde2 bridge-utils openbsd-netcat swtpm
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Virtualization packages installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install virtualization packages. Please check for errors. Exiting as virt-manager setup relies on these.${NC}"
+        exit 1
+    fi
+else
+    echo -e "${YELLOW}Virt-manager and related packages already installed. Skipping.${NC}"
+fi
+
+echo "---"
 
 # --- Install Virt-manager and QEMU packages ---
 echo -e "${BLUE}Checking Virt-manager and QEMU package installation...${NC}"
@@ -79,12 +110,12 @@ if ! is_package_installed "virt-manager"; then
         echo -e "${GREEN}Virtualization packages installed successfully.${NC}"
     else
         echo -e "${RED}Failed to install virtualization packages. Please check for errors.${NC}"
-    fi # <--- Corrected 'fi' here
+    fi
 else
     echo -e "${YELLOW}Virt-manager and related packages already installed. Skipping.${NC}"
 fi
 
-
+echo "---"
 
 # --- Enable and start libvirtd.service ---
 echo -e "${BLUE}Checking libvirtd service status...${NC}"
@@ -100,7 +131,7 @@ else
     echo -e "${YELLOW}libvirtd.service is already enabled and active. Skipping.${NC}"
 fi
 
-
+echo "---"
 
 # --- Modify libvirtd.conf ---
 echo -e "${BLUE}Checking libvirtd.conf configuration...${NC}"
@@ -141,7 +172,7 @@ else
     echo -e "${GREEN}libvirtd.conf changes applied.${NC}"
 fi
 
-
+echo "---"
 
 # --- Add current user to libvirt and kvm groups ---
 CURRENT_USER=$(whoami)
@@ -192,7 +223,7 @@ else
     fi
 fi
 
-
+echo "---"
 
 # Check group setting
 if grep -qE '^group = "wheel"$' "$QEMU_CONF"; then
@@ -328,9 +359,6 @@ else
 fi
 Clash
 
-
 echo "---"
-
-
 echo -e "${GREEN}Script execution complete.${NC}"
 echo -e "${YELLOW}Remember to log out and log back in for group changes and environment variables to take full effect.${NC}"
