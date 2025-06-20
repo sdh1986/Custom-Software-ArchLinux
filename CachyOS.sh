@@ -326,10 +326,11 @@ if ! is_package_installed "clash-verge-rev-bin"; then
 else
     echo -e "${YELLOW}ClashVergeRev already installed. Skipping.${NC}"
 fi
+Clash
 
 
 echo "---"
-Clash
+
 
 echo -e "${GREEN}Script execution complete.${NC}"
 echo -e "${YELLOW}Remember to log out and log back in for group changes and environment variables to take full effect.${NC}"
