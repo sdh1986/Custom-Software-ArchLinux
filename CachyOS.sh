@@ -238,7 +238,7 @@ echo "---"
 echo -e "${BLUE}Checking Backintime installation...${NC}"
 if ! is_package_installed "backintime"; then
     echo -e "${YELLOW}Backintime not found. Installing...${NC}"
-    sudo pacman -S --noconfirm backintime
+    paru -S --noconfirm backintime
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Backintime installed successfully.${NC}"
     else
