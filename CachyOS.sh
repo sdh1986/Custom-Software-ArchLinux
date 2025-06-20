@@ -42,7 +42,7 @@ echo "---"
 echo -e "${BLUE}Checking Fcitx5 package installation...${NC}"
 if ! is_package_installed "fcitx5-im"; then
     echo -e "${YELLOW}Fcitx5 packages not found. Installing...${NC}"
-    sudo pacman -S --noconfirm fcitx5-im fcitx5-chinese-addons
+    sudo pacman -S --noconfirm --needed fcitx5-im fcitx5-chinese-addons
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Fcitx5 packages installed successfully.${NC}"
     else
