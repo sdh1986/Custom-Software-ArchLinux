@@ -234,6 +234,22 @@ fi
 
 echo "---"
 
+# --- Install Backintime ---
+echo -e "${BLUE}Checking Backintime installation...${NC}"
+if ! is_package_installed "backintime"; then
+    echo -e "${YELLOW}Backintime not found. Installing...${NC}"
+    sudo pacman -S --noconfirm backintime
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Backintime installed successfully.${NC}"
+    else
+        echo -e "${RED}Failed to install Backintime. Please check for errors.${NC}"
+    fi
+else
+    echo -e "${YELLOW}Backintime already installed. Skipping.${NC}"
+fi
+
+echo "---"
+
 # --- Install Bitwarden ---
 echo -e "${BLUE}Checking Bitwarden installation...${NC}"
 if ! is_package_installed "bitwarden"; then
@@ -247,6 +263,8 @@ if ! is_package_installed "bitwarden"; then
 else
     echo -e "${YELLOW}Bitwarden already installed. Skipping.${NC}"
 fi
+
+echo "---"
 
 # --- Install Brave ---
 echo -e "${BLUE}Checking Brave installation...${NC}"
@@ -262,6 +280,8 @@ else
     echo -e "${YELLOW}Brave already installed. Skipping.${NC}"
 fi
 
+echo "---"
+
 # --- Install OBS ---
 echo -e "${BLUE}Checking OBS installation...${NC}"
 if ! is_package_installed "obs-studio"; then
@@ -275,6 +295,8 @@ if ! is_package_installed "obs-studio"; then
 else
     echo -e "${YELLOW}OBS already installed. Skipping.${NC}"
 fi
+
+echo "---"
 
 # --- Install BTOP ---
 echo -e "${BLUE}Checking BTOP installation...${NC}"
@@ -290,21 +312,7 @@ else
     echo -e "${YELLOW}BTOP already installed. Skipping.${NC}"
 fi
 
-# --- Install Backintime ---
-:<<'backintime'
-echo -e "${BLUE}Checking Backintime installation...${NC}"
-if ! is_package_installed "btop"; then
-    echo -e "${YELLOW}Backintime not found. Installing...${NC}"
-    sudo pacman -S --noconfirm btop
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}Backintime installed successfully.${NC}"
-    else
-        echo -e "${RED}Failed to install Backintime. Please check for errors.${NC}"
-    fi
-else
-    echo -e "${YELLOW}Backintime already installed. Skipping.${NC}"
-fi
-backintime
+echo "---"
 
 # --- Install ClashVergeRev ---
 :<<'Clash'
