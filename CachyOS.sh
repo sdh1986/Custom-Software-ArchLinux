@@ -28,7 +28,7 @@ is_user_in_group() {
 
 # --- Update Pacman mirrorlist ---
 echo -e "${BLUE}Updating Pacman mirrorlist and synchronizing databases...${NC}"
-sudo pacman -Syu --noconfirm
+sudo pacman -Syyu --noconfirm
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}Pacman mirrorlist updated and databases synchronized successfully.${NC}"
 else
