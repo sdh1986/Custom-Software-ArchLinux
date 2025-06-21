@@ -213,7 +213,7 @@ if grep -qE '^group = "wheel"$' "$QEMU_CONF"; then
     echo -e "${YELLOW}group setting already configured in qemu.conf. Skipping.${NC}"
 else
     echo -e "${CYAN}Modifying group setting in qemu.conf...${NC}"
-    sudo sed -i 's/#group = "libvirt-qemu"/group = "wheel"/' "$QEMU_CONF"
+    sudo sed -i 's/#group = "libvirt-qemu"/group = "kvm"/' "$QEMU_CONF"
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}group setting modified successfully.${NC}"
         QEMU_CONFIG_CHANGED=1
