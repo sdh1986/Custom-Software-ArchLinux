@@ -92,23 +92,6 @@ if ! is_package_installed "virt-manager"; then
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Virtualization packages installed successfully.${NC}"
     else
-        echo -e "${RED}Failed to install virtualization packages. Please check for errors. Exiting as virt-manager setup relies on these.${NC}"
-        exit 1
-    fi
-else
-    echo -e "${YELLOW}Virt-manager and related packages already installed. Skipping.${NC}"
-fi
-
-echo "---"
-
-# --- Install Virt-manager and QEMU packages ---
-echo -e "${BLUE}Checking Virt-manager and QEMU package installation...${NC}"
-if ! is_package_installed "virt-manager"; then
-    echo -e "${YELLOW}Virt-manager not found. Installing virtualization packages...${NC}"
-    sudo pacman -Syu --needed --noconfirm virt-manager qemu-full libvirt edk2-ovmf dnsmasq vde2 bridge-utils openbsd-netcat swtpm
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}Virtualization packages installed successfully.${NC}"
-    else
         echo -e "${RED}Failed to install virtualization packages. Please check for errors.${NC}"
     fi
 else
